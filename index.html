@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <!--=============== REMIXICONS ===============-->
+      <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+
+      <!--=============== CSS ===============-->
+      <link rel="stylesheet" href="assets/css/styles.css">
+      <link rel="stylesheet" href="assets/css/spinner.css">
+      <script src="https://sdk.mercadopago.com/js/v2"></script>
+
+      <title>WebsMedu</title>
+   </head>
+   <body>
+      <!--=============== HEADER ===============-->
+      <header class="header">
+         <nav class="nav container">
+            <div class="nav__data">
+               <a href="./" class="nav__logo">
+                  <i class="ri-planet-line"></i> WebsMedu
+               </a>
+               
+               <div class="nav__toggle" id="nav-toggle">
+                  <i class="ri-menu-line nav__burger"></i>
+                  <i class="ri-close-line nav__close"></i>
+               </div>
+            </div>
+
+            <!--=============== NAV MENU ===============-->
+            <div class="nav__menu" id="nav-menu">
+               <ul class="nav__list">
+                  <li><a href="#" class="nav__link">Início</a></li>
+
+                  <li><a href="https://skyia.websmedu.com.br/" class="nav__link">Sky IA</a></li>
+                  
+                  <li><a href="#" class="nav__link">Produtos</a></li>
+
+                      <!--=============== DROPDOWN 1 ===============-->
+                      <li class="dropdown__item">
+                        <div class="nav__link">
+                           Ajuda <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                        </div>
+   
+                        <ul class="dropdown__menu">
+                           <li id="help">
+                              <a href="https://help.websmedu.com.br/" class="dropdown__link">
+                                 <i class="ri-customer-service-line"></i> FAQ's
+                              </a>                          
+                           </li>
+   
+                           <li id="help">
+                              <a href="#" class="dropdown__link">
+                                 <i class="ri-phone-fill"></i> Contato
+                              </a>
+                           </li>
+                           <li id="help">
+                              <a href="#" class="dropdown__link">
+                                 <i class="ri-lock-line"></i> Segurança
+                              </a>
+                           </li>
+                           <li id="help">
+                              <a href="" class="dropdown__link">
+                                 <i class="ri-wallet-3-line"></i> Planos
+                              </a>
+                           </li>
+                        </ul>
+                     </li>
+
+                  <!--=============== DROPDOWN 2 ===============-->
+                  <li class="dropdown__item">
+                     <div class="nav__link">
+                        Sua Conta <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                     </div>
+
+                     <ul class="dropdown__menu">
+                        <div id="loginTrue">
+                           <li>
+                              <a href="#" class="dropdown__link">
+                                 <i class="ri-user-line"></i> Perfil
+                              </a>                          
+                           </li>
+   
+                           <li>
+                              <a href="#" class="dropdown__link">
+                                 <i class="ri-lock-line"></i> Pagamentos
+                              </a>
+                           </li>
+
+                           <li class="dropdown__subitem">
+                              <div class="dropdown__link">
+                                 <i class="ri-settings-3-line"></i> Configurações <i class="ri-add-line dropdown__add"></i>
+                              </div> 
+   
+                              <ul class="dropdown__submenu">
+                                 <li>
+                                    <a href="#" class="dropdown__sublink">
+                                       <i class="ri-notification-2-line"></i> Notificações
+                                    </a>
+                                 </li>
+         
+                                 <li>
+                                    <a href="#" class="dropdown__sublink">
+                                       <i class="ri-cloud-line"></i> Temas
+                                    </a>
+                                 </li>
+         
+                                 <li>
+                                    <a href="#" class="dropdown__sublink">
+                                       <i class="ri-upload-cloud-2-line"></i> Backups
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="./config/plans.html" class="dropdown__sublink">
+                                       <i class="ri-wallet-3-line"></i> Planos
+                                    </a>
+                                 </li>
+   
+                                 <li>
+                                    <a href="./config/security.html" class="dropdown__sublink">
+                                       <i class="ri-shield-check-line"></i> Segurança
+                                    </a>
+                                 </li>
+                              </ul>
+                           </li>
+                        </div>
+
+                        <li id="login">
+                           <a href="./server/signin.html" class="dropdown__link">
+                              <i class="ri-login-box-line"></i> Login
+                           </a>                          
+                        </li>
+
+                        <li id="logout">
+                           <a href="#" class="dropdown__link" onclick="logout()">
+                              <i class="ri-logout-box-line"></i> Sair
+                           </a>                          
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+
+                  </li>
+                  <li></li>
+               </ul>
+            </div>
+         </nav>
+      </header>
+
+      <div class="carrosel-imgs">
+         <div class="image-container active">
+             <img src="1920x1080.png" id="img-1">
+         </div>
+         <div class="image-container">
+             <img src="1920x1080.png" id="img-2">
+         </div>
+         <div class="image-container">
+             <img src="1920x1080.png" id="img-3">
+         </div>
+         <div class="image-container">
+             <img src="1920x1080.png" id="img-4">
+         </div>
+         <div class="image-container">
+             <img src="1920x1080.png" id="img-5">
+         </div>
+         <button type="button" id="next-img"><i class="ri-arrow-right-s-line"></i></button>
+         <button type="button" id="return-img"><i class="ri-arrow-left-s-line"></i></button>
+         <div class="dots-img">
+            <div class="dot-img active"></div>
+            <div class="dot-img"></div>
+            <div class="dot-img"></div>
+            <div class="dot-img"></div>
+            <div class="dot-img"></div>
+        </div>
+     </div><br><br><br><br><br><br>
+     
+     <h1 id="Section">Equipe</h1>
+
+      <div class="equipe">
+         <div class="member-bio">
+             <div>
+               <img src="logo.png" id="bio-img">
+               <h1 id="member-name">Fernanda Gonzalez!</h1>
+            </div>
+             <p id="bio-description"></p>
+         </div>
+         <button type="button" id="next"><i class="ri-arrow-right-s-line"></i></button>
+         <button type="button" id="return"><i class="ri-arrow-left-s-line"></i></button>
+         <div class="dots">
+             <div class="dot active"></div>
+             <div class="dot"></div>
+             <div class="dot"></div>
+             <div class="dot"></div>
+             <div class="dot"></div>
+         </div>
+     </div>
+     <br><br><br><br><br><br>
+     <h1 id="Section">História</h1><br><br><br><br><br><br>
+
+      <div class="history">
+         <h1>Nossa <span id="color">História!</span></h1>
+         <p>Olá, meu nome é <span id="color">Theo Gonzalez Meduri</span>. Estou aqui para compartilhar um pouco da minha trajetória. Comecei a programar aos <span id="color">13 anos</span>; desde cedo, sempre fui fascinado por <span id="color">tecnologia</span> e pelo desenvolvimento de <span id="color">sites</span>. No início, criava sites simples, pois ainda estava aprendendo, mas com o tempo, fui aprimorando minhas habilidades. Hoje, com muito mais <span id="color">conhecimento</span> e <span id="color">técnica</span>, decidi fundar minha própria <span id="color">loja de sites</span>. Aqui, meus clientes têm a <span id="color">segurança</span> de comprar em um ambiente <span id="color">confiável</span> e profissional. Conto com uma <span id="color">equipe dedicada</span> – formada pelos meus <span id="color">melhores amigos</span> – que está comigo nesta jornada. Agradeço a todos que me apoiaram, e sei que, juntos, chegaremos ao <span id="color">topo</span>!</p>
+         <button>Saiba Mais</button>
+      </div>
+      <br><br><br><br><br><br>
+
+      <h1 id="Section">Produtos</h1>
+
+      <div id="products-list">
+         <li id="product">
+           <img src="logo.png" alt="Produto Teste">
+           <div class="txts">
+            <p id="categoria">WebSites</p>
+            <h3 id="name">Shop Online</h3>
+           </div>
+           <div class="stars">
+            <i class="ri-star-fill" id="fill"></i>
+            <i class="ri-star-fill" id="fill"></i>
+            <i class="ri-star-fill" id="fill"></i>
+            <i class="ri-star-fill" id="fill"></i>
+            <i class="ri-star-line"></i>
+           </div>
+           <div class="buy-infos">
+            <span id="price">R$299,99</span>
+            <button onclick="buy()"><i class="ri-shopping-cart-line"></i></button>
+           </div>
+         </li>
+         <li id="product">
+            <!-- <img src="logo.png" alt="Produto Teste">
+            <div class="txts">
+             <p id="categoria">WebSites</p>
+             <h3 id="name">Business</h3>
+            </div>
+            <div class="stars">
+             <i class="ri-star-fill" id="fill"></i>
+             <i class="ri-star-fill" id="fill"></i>
+             <i class="ri-star-fill" id="fill"></i>
+             <i class="ri-star-line"></i>
+             <i class="ri-star-line"></i>
+            </div>
+            <div class="buy-infos">
+             <div class="descont">
+               <span id="price">R$78,90</span>
+               <div class="new-price">
+                  <span id="new-price">R$39,45</span>
+                  <span id="percent">50% OFF</span>
+               </div>
+             </div>
+             <button onclick="buy()"><i class="ri-shopping-cart-line"></i></button>
+            </div>
+          </li>
+          <li id="product">
+            <img src="logo.png" alt="Produto Teste">
+            <div class="txts">
+             <p id="categoria">WebSites</p>
+             <h3 id="name">Scheduling</h3>
+            </div>
+            <div class="stars">
+             <i class="ri-star-fill" id="fill"></i>
+             <i class="ri-star-fill" id="fill"></i>
+             <i class="ri-star-fill" id="fill"></i>
+             <i class="ri-star-fill" id="fill"></i>
+             <i class="ri-star-fill" id="fill"></i>
+            </div>
+            <div class="buy-infos">
+             <span id="price">R$199,99</span>
+             <button onclick="buy()"><i class="ri-shopping-cart-line"></i></button>
+            </div>
+          </li> -->
+         <!-- Adicione mais produtos aqui, se necessário -->
+       </div>
+       
+
+      <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore-compat.js"></script>
+    <script src="firebaseConfig.js"></script>
+
+
+  <div class="loading-modal">
+   <div class="loading-modal-content">
+       <div class="spinner"></div>
+   </div>
+</div>
+
+<footer class="footer">
+   <div class="footer__container container">
+     <div class="footer__content">
+       <h3 class="footer__title">Sobre Nós</h3>
+       <p class="footer__description">Nós nos dedicamos a fornecer o melhor serviço, com paixão e compromisso.</p>
+     </div>
+     
+     <div class="footer__content">
+       <h3 class="footer__title">Páginas</h3>
+       <ul class="footer__links">
+         <li><a href="#" class="footer__link">Home - Página Inicial</a></li>
+         <li><a href="#" class="footer__link">Serviços - Página de Atendimento</a></li>
+         <li><a href="#" class="footer__link">Contato - Página de Contato</a></li>
+       </ul>
+     </div>
+     
+     <div class="footer__content">
+       <h3 class="footer__title">Siga-nos</h3>
+       <div class="footer__socials">
+         <a href="#" class="footer__social"><i class="ri-facebook-box-fill"></i> WebsMedu</a>
+         <a href="#" class="footer__social"><i class="ri-instagram-fill"></i> Instagram</a>
+         <a href="#" class="footer__social"><i class="ri-tiktok-fill"></i> Tiktok</a>
+       </div>
+     </div>
+
+     <div class="footer__content">
+      <div class="footer__title">Contatos do Site</div>
+      <div class="footer__links">
+         <li><a href="#" class="footer__link">support@websmedu.com.br</a></li>
+         <li><a href="#" class="footer__link">services@websmedu.com.br</a></li>
+         <li><a href="#" class="footer__link">others@websmedu.com.br</a></li>
+      </div>
+     </div>
+   </div>
+ </footer>
+ 
+
+    <script>
+// Selecionando todos os contêineres de imagem
+const images = document.querySelectorAll('.image-container img');
+const dotsImg = document.querySelectorAll('.dot-img'); // Seleciona todos os pontos de navegação
+
+let currentImageIndex = 0; // Índice da imagem atual
+
+// Função para mostrar a próxima imagem
+function showNextImage() {
+    // Remove a classe 'active' da imagem atual
+    images[currentImageIndex].classList.remove('active');
+    dotsImg[currentImageIndex].classList.remove('active'); // Remove a classe 'active' do ponto atual
+
+    // Calcula o índice da próxima imagem
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+
+    // Adiciona a classe 'active' à próxima imagem e ao ponto correspondente
+    images[currentImageIndex].classList.add('active');
+    dotsImg[currentImageIndex].classList.add('active');
+}
+
+// Função para mostrar a imagem anterior
+function showPreviousImage() {
+    // Remove a classe 'active' da imagem atual
+    images[currentImageIndex].classList.remove('active');
+    dotsImg[currentImageIndex].classList.remove('active'); // Remove a classe 'active' do ponto atual
+
+    // Calcula o índice da imagem anterior
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+
+    // Adiciona a classe 'active' à imagem anterior e ao ponto correspondente
+    images[currentImageIndex].classList.add('active');
+    dotsImg[currentImageIndex].classList.add('active');
+}
+
+// Inicializa o carrossel com a primeira imagem visível e o primeiro ponto ativo
+images[currentImageIndex].classList.add('active');
+dotsImg[currentImageIndex].classList.add('active');
+
+// Adiciona eventos de clique nos botões de navegação
+const nextButtonImg = document.getElementById('next-img');
+const returnButtonImg = document.getElementById('return-img');
+
+// Event listener para o botão de próximo
+nextButtonImg.addEventListener('click', showNextImage);
+
+// Event listener para o botão de retorno
+returnButtonImg.addEventListener('click', showPreviousImage);
+
+// Troca a imagem automaticamente a cada 3 segundos
+setInterval(showNextImage, 5000);
+
+// Função para permitir navegação pelos dots
+dotsImg.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        // Remove a classe 'active' da imagem e do ponto atual
+        images[currentImageIndex].classList.remove('active');
+        dotsImg[currentImageIndex].classList.remove('active');
+
+        // Atualiza o índice para o ponto clicado
+        currentImageIndex = index;
+
+        // Adiciona a classe 'active' à imagem e ao ponto correspondentes
+        images[currentImageIndex].classList.add('active');
+        dotsImg[currentImageIndex].classList.add('active');
+    });
+});
+
+const nextButton = document.getElementById('next');
+const returnButton = document.getElementById('return');
+const dots = document.querySelectorAll('.dot');
+const bioImg = document.getElementById('bio-img');
+const memberName = document.getElementById('member-name');
+const bioDescription = document.getElementById('bio-description');
+
+// Dados das bios
+const bios = [
+   {
+      img: 'fefe.jpg',
+      name: 'Fernanda Gonzalez!',
+      description: `Olá! Meu nome é <span class="color">Fernanda Gonzalez</span>, tenho <span class="color">14 anos</span> e sou apaixonada por ajudar as pessoas ao meu redor. Sou uma pessoa <span class="color">interativa e coloco muita dedicação em tudo que faço. Comecei essa jornada junto com meu primo, fundador da WebsMedu, para apoiar seu projeto</span> e também para explorar o campo da informática, algo que sempre me fascinou. Estou aqui para aprender, me desenvolver e, quem sabe, descobrir exatamente onde quero estar no futuro.`,
+   },
+   {
+      img: 'Dani.jpg',
+      name: 'Danielle Profeta!',
+      description: 'Oii, meu nome é Danielle e estou começando nesta área tecnológica agora, mas com os conhecimentos que já tenho espero ir longe ao lado do meu amigo e chefe Theo, que reconheceu meu esforço e confiou em mim neste processo tão mágico! Vou ajudar e atender a todos da melhor forma!',
+   },
+   {
+      img: 'logo.png',
+      name: 'Giovana Burato!',
+      description: 'Descrição da Giovana Burato!.',
+   },
+   {
+      img: 'logo.png',
+      name: 'Caroline Batista!',
+      description: 'Descrição da Caroline Batista.',
+   },
+   {
+      img: 'logo.png',
+      name: 'Mariane Nilander',
+      description: 'Descrição da Mariane Nilander.',
+   }
+];
+
+let currentIndexBio = 0; // Índice da bio atual
+
+// Função para atualizar as informações da bio
+function updateBio(index) {
+   bioImg.src = bios[index].img;
+   memberName.textContent = bios[index].name;
+   bioDescription.innerHTML = bios[index].description;
+   updateDots(index);
+}
+
+// Função para atualizar os dots de navegação
+function updateDots(index) {
+   dots.forEach((dot, i) => {
+      dot.classList.remove('active');
+      if (i === index) {
+         dot.classList.add('active');
+      }
+   });
+}
+
+// Adiciona eventos nos botões de navegação de bios
+nextButton.addEventListener('click', () => {
+   currentIndexBio = (currentIndexBio + 1) % bios.length;
+   updateBio(currentIndexBio);
+});
+
+returnButton.addEventListener('click', () => {
+   currentIndexBio = (currentIndexBio - 1 + bios.length) % bios.length;
+   updateBio(currentIndexBio);
+});
+
+// Inicializa o carrossel de bios com o primeiro item
+updateBio(currentIndexBio);
+
+// Muda a bio automaticamente a cada 15 segundos
+setInterval(() => {
+   nextButton.click();
+}, 15000); // 15000 ms = 15 segundos
+
+
+
+      // Referência ao Firestore
+const db = firebase.firestore();
+
+// Função para carregar os produtos ao entrar na página
+async function loadProducts() {
+  try {
+    const productsContainer = document.getElementById('products-list');
+    
+    // Limpa o conteúdo atual (caso haja algum)
+    productsContainer.innerHTML = '';
+
+    // Busca os produtos da coleção 'Products'
+    const snapshot = await db.collection('Products').get();
+
+    snapshot.forEach(doc => {
+      const product = doc.data();
+      const { name, desc, price, cate, descont, img } = product;
+
+      let productItem = document.createElement('li');
+      productItem.id = 'product';
+
+      // Caso o desconto seja 0, usa o primeiro modelo
+      if (descont === 0) {
+        productItem.innerHTML = `
+          <img src="${img ? img : 'logo.png'}">
+          <div class="txts">
+            <p id="categoria">${cate}</p>
+            <h3 id="name">${name}</h3>
+          </div>
+          <div class="stars">
+            <i class="ri-star-fill" id="fill"></i>
+            <i class="ri-star-fill" id="fill"></i>
+            <i class="ri-star-fill" id="fill"></i>
+            <i class="ri-star-fill" id="fill"></i>
+            <i class="ri-star-line"></i>
+          </div>
+          <div class="buy-infos">
+            <span id="price">R$${price.toFixed(2)}</span>
+            <button onclick="buy()"><i class="ri-shopping-cart-line"></i></button>
+          </div>
+        `;
+      } else {
+        // Caso o desconto seja maior que 0, usa o segundo modelo
+        const discountAmount = price * (descont / 100);
+        const newPrice = price - discountAmount;
+
+        productItem.innerHTML = `
+          <img src="logo.png" alt="${name}">
+          <div class="txts">
+            <p id="categoria">${cate}</p>
+            <h3 id="name">${name}</h3>
+          </div>
+          <div class="stars">
+            <i class="ri-star-fill" id="fill"></i>
+            <i class="ri-star-fill" id="fill"></i>
+            <i class="ri-star-fill" id="fill"></i>
+            <i class="ri-star-line"></i>
+            <i class="ri-star-line"></i>
+          </div>
+          <div class="buy-infos">
+            <div class="descont">
+              <span id="price">R$${price.toFixed(2)}</span>
+              <div class="new-price">
+                <span id="new-price">R$${newPrice.toFixed(2)}</span>
+                <span id="percent">${descont}% OFF</span>
+              </div>
+            </div>
+            <button onclick="buy()"><i class="ri-shopping-cart-line"></i></button>
+          </div>
+        `;
+      }
+
+      // Adiciona o item do produto ao container de produtos
+      productsContainer.appendChild(productItem);
+    });
+
+    console.log("Produtos carregados com sucesso!");
+  } catch (error) {
+    console.error("Erro ao carregar produtos:", error);
+  }
+}
+
+// Carrega os produtos assim que a página termina de carregar
+window.onload = loadProducts;
+    </script>
+
+      <!--=============== MAIN JS ===============-->
+      <script src="assets/js/main.js"></script>
+      <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="568d8484-cfb4-47a2-80c0-3dc993c40be2";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+   </body>
+</html>

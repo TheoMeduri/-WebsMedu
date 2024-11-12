@@ -1,0 +1,456 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --black-color: hsl(220, 24%, 12%);
+  --black-color-light: hsl(220, 24%, 15%);
+  --black-color-lighten: hsl(220, 20%, 18%);
+  --white-color: #fff;
+  --body-color: hsl(220, 100%, 97%);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Montserrat", sans-serif;
+  --normal-font-size: .938rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1024px) {
+  :root {
+    --normal-font-size: 1rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--black-color);
+  padding: 1rem;
+  height: 100vh; /* Full height of the viewport */
+  position: fixed;
+}
+  
+.sidebar ul {
+  list-style: none;
+}
+  
+.sidebar li {
+  margin: 1rem 0;
+}
+  
+.sidebar h2 {
+  color: #fff;
+  padding: 0.75rem 1rem;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 10px;
+  border-bottom: 2px solid var(--black-color-lighten);
+}
+  
+.sidebar a {
+  text-decoration: none;
+  gap: 1rem;
+  color: var(--white-color);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  transition: backgrond-color 0.5s ease-in-out, border-radius 0.5s ease-in-out;
+}
+  
+.sidebar a:hover {
+  background-color: var(--black-color-light);
+}
+  
+.sidebar .active {
+  background-color: var(--black-color-lighten);
+}
+
+.sidebar a.dropdown i#chevron {
+    transition: transform .5s ease-in-out;
+}
+
+ul.dropdown__menu {
+    background-color: hsl(220, 24%, 14%);
+    border-radius: 0 0 8px 8px;
+    transition: max-height 0.5s ease-in-out;
+    max-height: 0; /* Usar max-height em vez de height */
+    overflow: hidden;
+}
+
+
+ul.dropdown__menu li.dropdown__item {
+    margin: 0;
+}
+
+ul.dropdown__menu li.dropdown__item a.dropdown__link {
+    text-decoration: none;
+    color: var(--white-color);
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    border-radius: 0;
+    border-bottom: 1px solid hsl(220, 20%, 18%);
+}
+
+ul.dropdown__menu li.dropdown__item a.dropdown__link:hover {
+    background-color: hsl(220, 20%, 18%);
+}
+
+ul.dropdown__menu li.dropdown__item:last-child a.dropdown__link {
+    border-radius: 0 0 8px 8px;
+    border-bottom: 0px;
+}
+
+.sidebar li.dropdown > a#link {
+    background-color: var(--black-color-lighten);
+    border-radius: 8px 8px 0 0;
+    border-bottom: 2px solid hsl(220, 20%, 20%);
+}
+
+#chevron.rotate {
+    transform: rotate(180deg);
+    transition: transform 0.3s;
+}
+
+.main {
+    margin-left: 300px;
+    padding: 20px;
+    margin-right: 50px;
+    position: relative;
+}
+
+.form-content {
+    position: absolute;
+    top: 56%;
+    left: 50%;
+    transform: translate( -50%, 04% );
+    width: 600px;
+    height: 800px;
+    box-shadow: 0 0 8px #00000028;
+    border-radius: 8px;
+    background-color: var(--black-color);
+    padding: 20px;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    width: 260px;
+    justify-content: space-between;
+    padding: 5px;
+    background-color: var(--black-color-light);
+    box-shadow: 0 0 8px #00000028;
+    border-radius: 10px;
+    margin-left: 150px;
+    margin-bottom: 50px;
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    border-radius: 8px;
+    padding: 8px;
+    transition: .5s ease-in-out;
+}
+
+.menu a:hover {
+    background-color: #2ca0ff8b;
+}
+
+.menu a.active {
+    background-color: #2ca0ff;
+}
+
+.add-remove {
+    position: relative;
+    overflow: hidden;
+}
+
+.remove {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    right: -110%;
+    background-color:  var(--black-color);
+    height: 100%;
+    transition: right 1s ease-in-out;
+}
+
+.remove.active {
+    right: 0%;
+}
+
+.form-group {
+    padding: 1px 10px; 
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 2px solid var(--black-color-lighten);
+  border-radius: 4px;
+  background-color: var(--black-color-light);
+  font-size: var(--normal-font-size);
+  color: var(--white-color);
+  box-shadow: 0 0 8px #00000028;
+  outline: none;
+  transition: .5s ease-in-out;
+}
+
+/* Para ocultar as setinhas em navegadores baseados em WebKit */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#desc {
+    width: 100%;
+    height: 100px;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 2px solid var(--black-color-lighten);
+    border-radius: 4px;
+    background-color: var(--black-color-light);
+    font-size: var(--normal-font-size);
+    color: var(--white-color);
+    box-shadow: 0 0 8px #00000028;
+    outline: none;
+    transition: .5s ease-in-out;
+    resize: none; /* Permite redimensionar apenas verticalmente */
+    font-family: var(--body-font);
+}
+
+#desc::placeholder {
+    font-family: var(--body-font);
+}
+
+
+.form-group input:focus,
+#desc:focus {
+  border:  2px solid #2ca0ff;
+  
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: var(--font-semi-bold);
+  color: var(--white-color);
+}
+
+.form-group button {
+  width: 100%;
+  padding: 0.75rem;
+  outline: none;
+  border: none;
+  background-color: #2ca0ff;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 0 8px #00000028;
+  transition: .5s ease-in-out;
+}
+
+.form-group button:hover {
+    background-color: #238bdf;
+}
+
+#user-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    list-style: none;
+    background-color: var(--black-color);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    color: #ffffff;
+    max-width: 800px;
+    margin: auto;
+}
+
+#user-list h2 {
+    font-size: 1.8em;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--black-color-lighten);
+    padding-bottom: 10px;
+}
+
+#user-list li {
+    background-color: var(--black-color-light);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+#user-list li:hover {
+    background-color: var(--black-color-lighten);
+}
+
+#user-list li .dados {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1em;
+    color: #ddd;
+}
+
+#user-list .copy-btn {
+    background-color: transparent;
+    border: none;
+    color: #ddd;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+#user-list .copy-btn:hover {
+    color: #00b4d8;
+}
+
+#user-list li:last-child {
+    border-bottom: none;
+}
+
+
+#user-list li .dados {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+#user-list .copy-btn {
+    position: absolute;
+    right: 0;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    transition: .5s ease-in-out;
+    cursor: pointer;
+}
+
+#user-list .copy-btn:hover {
+    color: #238bdf;
+}
+#logs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    list-style: none;
+    background-color: var(--black-color);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    color: #ffffff;
+    max-width: 800px;
+    margin: auto;
+}
+
+#logs-list h2 {
+    font-size: 1.8em;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--black-color-lighten);
+    padding-bottom: 10px;
+}
+
+#logs-list li.logs {
+    background-color: var(--black-color-light);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    gap: 1rem; /* Espaçamento entre foto e textos */
+    position: relative; /* Para posicionar timestamp */
+    transition: background-color 0.3s ease;
+}
+
+#logs-list li.logs:hover {
+    background-color: var(--black-color-lighten);
+}
+
+#logs-list li.logs #photo {
+    background-color: #00b4d8; /* Cor de fundo para as iniciais */
+    color: #fff; /* Cor do texto das iniciais */
+    width: 50px; /* Largura do contêiner da foto */
+    height: 50px; /* Altura do contêiner da foto */
+    padding: 5px;
+    display: flex;
+    align-items: center; /* Centraliza o texto verticalmente */
+    justify-content: center; /* Centraliza o texto horizontalmente */
+    border-radius: 50%; /* Torna o contêiner circular */
+    font-weight: bold; /* Texto em negrito */
+    font-size: 1.2em; /* Tamanho da fonte */
+}
+
+#logs-list li.logs .texts {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: #ddd;
+}
+
+#logs-list li.logs .texts h3#name {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 0;
+    color: #ffffff;
+}
+
+#logs-list li.logs .texts span {
+    font-size: 0.9em;
+    color: #bbbbbb;
+}
+
+#logs-list li.logs .texts span#idProduct {
+    color: #00b4d8;
+}
+
+#logs-list li.logs .texts span#timestamp {
+    font-style: italic;
+    font-size: 0.8em;
+    color: #aaaaaa; /* Cor mais suave para o timestamp */
+    position: absolute; /* Permite o posicionamento em relação ao pai */
+    right: 15px; /* Espaçamento do lado direito */
+    top: 15px; /* Espaçamento do fundo */
+}

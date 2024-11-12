@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--=============== REMIXICONS ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.4.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="../assets/css/admin.css">
+
+    <!--=============== JS ===============-->
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore-compat.js"></script>
+    <script src="../firebaseConfig.js"></script>
+    <script src="authGuard.js"></script>
+    
+    <title>WebsMedu - ADM</title>
+</head>
+<body>
+    <div class="sidebar">
+        <ul>
+            <h2><i class="ri-admin-line"></i> Painel ADM</h2>
+            <li>
+                <a href="./" class="link">
+                    <i class="ri-dashboard-line"></i> DashBoard
+                </a>
+            </li>
+            <li id="dropdown-li">
+                <a href="" class="link dropdown" id="link">
+                    <i class="ri-archive-line"></i> Pedidos <i class="ri-arrow-down-s-line" id="chevron"></i>
+                </a>
+                <ul class="dropdown__menu">
+                    <li class="dropdown__item">
+                        <a href="" class="dropdown__link">
+                            <i class="ri-sparkling-line"></i> Novos
+                        </a>
+                    </li>
+                    <li class="dropdown__item">
+                        <a href="" class="dropdown__link">
+                            <i class="ri-time-line"></i> Pendente
+                        </a>
+                    </li>
+                    <li class="dropdown__item">
+                        <a href="" class="dropdown__link">
+                            <i class="ri-checkbox-circle-line"></i> Finalizados
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="produtos.html" class="link">
+                    <i class="ri-inbox-archive-line"></i> Produtos
+                </a>
+            </li>
+            <li>
+                <a href="users.html" class="link">
+                    <i class="ri-group-line"></i> Usuários
+                </a>
+            </li>
+            <li>
+                <a href="logs.html" class="link active">
+                    <i class="ri-blogger-line"></i> Logs
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <div id="logs-list">
+            <!-- Os logs sao preenchidos em js -->
+             <li class="logs">
+                <div id="photo">TM</div>
+                <div class="texts">
+                    <h3 id="name">Remoção de produto</h3>
+                    <span id="why">Estou apenas testando.</span>
+                    <span id="idProduct">id: 74740724804457147036</span>
+                    <span id="timestamp">hoje as 17h30</span>
+                </div>
+             </li>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.link.dropdown').forEach(dropdown => {
+            dropdown.addEventListener('click', function(e) {
+                e.preventDefault(); // Impede o redirecionamento
+                const dropLi = document.getElementById('dropdown-li')
+                const menu = this.nextElementSibling; // Seleciona o menu relacionado
+                menu.style.maxHeight = menu.style.maxHeight ? null : "200px"; // Alterna a altura
+                this.querySelector('#chevron').classList.toggle('rotate'); // Opcional: para animar o ícone
+                dropLi.classList.toggle('dropdown')
+            });
+        });
+        
+        const db = firebase.firestore();
+
+        async function fetchLogs() {
+            const logsList = document.getElementById('logs-list');
+            logsList.innerHTML = "<h2>Lista de Logs</h2>"; // Limpa a lista antes de preencher
+
+            try {
+                const snapshot = await db.collection('Logs').get();
+                snapshot.forEach(doc => {
+                    const log = doc.data();
+                    const logItem = document.createElement('li');
+                    logItem.classList.add("logs")
+                    const logId = doc.id; // Captura o ID do documento
+
+                    // Prepara o conteúdo do log
+                    logItem.innerHTML = `
+                        <div id="photo">${log.photo}</div>
+                        <div class="texts">
+                            <h3 id="name">${log.name || 'Remoção de produto'}</h3>
+                            <span id="why">${log.why || 'Razão não especificada'}</span>
+                            <span id="idProduct">id: ${log.idProduct || 'ID não disponível'}</span>
+                            <span id="timestamp">${log.timestamp ? new Date(log.timestamp.seconds * 1000).toLocaleString() : 'Data não disponível'}</span>
+                        </div>
+                    `;
+
+                    // Adiciona o item de log à lista
+                    logsList.appendChild(logItem);
+                });
+            } catch (error) {
+                console.error("Erro ao buscar logs: ", error);
+                logsList.innerHTML = "<p>Erro ao carregar logs.</p>";
+            }
+        }
+
+        // Chama a função para buscar os logs ao carregar a página
+        fetchLogs();
+
+    </script>
+</body>
+</html>

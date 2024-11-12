@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!--=============== REMIXICONS ===============-->
+   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+
+   <!--=============== CSS ===============-->
+   <link rel="stylesheet" href="../assets/css/configs.css">
+   <link rel="stylesheet" href="../assets/css/spinner.css">
+
+   <title>WebsMedu - Configs - PIN</title>
+</head>
+<body>
+
+    <div class="sidebar-config">
+        <ul>
+            <h2><i class="ri-settings-3-line"></i> Configurações </h2>
+            <li>
+                <a href="#" class="link">
+                    <i class="ri-notification-3-line"></i> Notificações
+                </a>
+            </li>
+            <li>
+                <a href="#" class="link">
+                    <i class="ri-cloud-line"></i> Temas
+                </a>
+            </li>
+            <li>
+                <a href="#" class="link">
+                    <i class="ri-upload-cloud-2-line"></i> Backups
+                </a>
+            </li>
+            <li>
+                <a href="plans.html" class="link">
+                    <i class="ri-wallet-3-line"></i>  Planos
+                </a>
+            </li>
+            <li id="dropdown-li">
+                <a href="pin.html" class="link dropdown"  id="link">
+                    <i class="ri-shield-check-line"></i> Segurança <i class="ri-arrow-down-s-line dropdown__arrow" id="chevron"></i>
+                </a>
+                <ul class="dropdown__menu">
+                    <li class="dropdown__item">
+                        <a href="" class="dropdown__link">
+                            <i class="ri-asterisk"></i> PIN
+                        </a>
+                    </li>
+                    <li class="dropdown__item">
+                        <a href="" class="dropdown__link">
+                            <i class="ri-wallet-line"></i> Carteira
+                        </a>
+                    </li>
+                    <li class="dropdown__item">
+                        <a href="" class="dropdown__link disabled">
+                            <i class="ri-qr-code-fill"></i> OAuth2
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <div class="pin-content">
+            <h1><i class="ri-asterisk"></i> PIN</h1>
+            <p>O PIN (Número de Identificação Pessoal) é uma ferramenta de segurança que protege sua conta. Após ativá-lo, o PIN será solicitado ao fazer compras ou alterar sua senha, garantindo que apenas você tenha acesso a essas ações. Com até 4 dígitos, escolha uma combinação fácil de lembrar, mas difícil de adivinhar. Ative seu PIN e torne suas transações mais seguras!</p>
+            <div class="slider-pin">
+                <div class="toggle-pin"></div>
+            </div>
+            <div class="active-desactive">
+
+            </div>
+        </div><br><br>
+
+        <div class="pin-content">
+            <h1><i class="ri-wallet-line"></i> Carteira</h1>
+            <p>A carteira pode ser a sua solução para imprevistos, especialmente em situações em que uma compra não é confirmada. Nesse caso, o valor correspondente é automaticamente adicionado à sua carteira, caso essa opção esteja ativada. Além disso, você pode acompanhar o saldo diretamente no seu perfil, na seção de Carteira, que aparecerá apenas se a funcionalidade estiver disponível. Assim, você tem mais praticidade e controle sobre seus créditos para futuras compras.</p>
+            <div class="slider-wallet">
+                <div class="toggle-wallet"></div>
+            </div>
+            <div class="active-desactive-wallet">
+
+            </div>
+        </div><br><br>
+
+        <div class="pin-content">
+            <h1 class="disabled" style="display: flex; align-items: center; gap: .5rem;"><i class="ri-qr-code-fill"></i> OAuth2 <p class="disabled" style="font-size: .9rem;">( Opção em Manutenção )</p></h1>
+            <p class="disabled">A autenticação em duas etapas é uma medida de segurança adicional para proteger sua conta. Ao fazer login, um código de 6 dígitos será enviado para o e-mail cadastrado, garantindo que apenas você tenha acesso. Se alguém tentar acessar sua conta sem autorização, será necessário inserir esse código para prosseguir. Caso você receba o código sem ter solicitado o login, poderá acionar o suporte para bloquear sua conta temporariamente e evitar acessos indevidos.</p>
+            <div class="slider-oauth2 disabled">
+                <div class="toggle-oauth2 disabled"></div>
+            </div>
+            <div class="active-desactive-oauth2 disabled">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="modalPin" class="modal-pin" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-pin-content1">
+                <h2 id="title">Digite seu PIN</h2>
+                <div class="pin-inputs">
+                    <input type="text" class="pin-input" maxlength="1" />
+                    <input type="text" class="pin-input" maxlength="1" />
+                    <input type="text" class="pin-input" maxlength="1" />
+                    <input type="text" class="pin-input" maxlength="1" />
+                </div>
+                <button id="nextButton" disabled>Próximo</button>
+            </div>
+            <div class="modal-pin-content2" style="display: none;">
+                <h2 id="title">Confirme seu PIN</h2>
+                <div class="pin-confirm-inputs">
+                    <input type="text" class="pin-input-confirm" maxlength="1" />
+                    <input type="text" class="pin-input-confirm" maxlength="1" />
+                    <input type="text" class="pin-input-confirm" maxlength="1" />
+                    <input type="text" class="pin-input-confirm" maxlength="1" />
+                </div>
+                <button id="activatePinButton" disabled>Ativar PIN</button>
+            </div>
+            <div class="modal-pin-content3" style="display: none;">
+                <h2 id="desativado">PIN Ativado!</h2>
+                <div class="pin-confirm-inputs">
+                    <i class="ri-checkbox-circle-line"></i>
+                </div>
+                <button id="closePinButton" onclick="closePin()">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="modal-pin">
+        <div class="modal-content">
+            <div class="modal-pin-content1">
+                <div class="titles-content" style="text-align: center; display: flex; flex-direction: column; gap: .5rem;">
+                    <h2 id="title">Digite seu PIN</h2>
+                    <p>Digite seu PIN para desbloquear.</p>
+                </div>
+                <div class="pin-inputs">
+                    <input type="text" class="pin-input" maxlength="1" />
+                    <input type="text" class="pin-input" maxlength="1" />
+                    <input type="text" class="pin-input" maxlength="1" />
+                    <input type="text" class="pin-input" maxlength="1" />
+                </div>
+                <button id="nextButton" disabled>Desbloquear</button>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="loading-modal">
+        <div class="loading-modal-content">
+            <div class="spinner"></div>
+        </div>
+    </div>
+    
+
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore-compat.js"></script>
+    <script src="../firebaseConfig.js"></script>
+
+    <script>
+        document.querySelectorAll('.link.dropdown').forEach(dropdown => {
+    dropdown.addEventListener('click', function(e) {
+        e.preventDefault(); // Impede o redirecionamento
+        const dropLi = document.getElementById('dropdown-li')
+        const menu = this.nextElementSibling; // Seleciona o menu relacionado
+        menu.style.maxHeight = menu.style.maxHeight ? null : "200px"; // Alterna a altura
+        this.querySelector('#chevron').classList.toggle('rotate'); // Opcional: para animar o ícone
+        dropLi.classList.toggle('dropdown')
+    });
+});
+
+    </script>
+
+    <script>
+
+
+    function closePin() {
+    const modalPin = document.querySelector(".modal-pin");
+    const content1 = document.querySelector('.modal-pin-content1');
+    const content2 = document.querySelector('.modal-pin-content2');
+    const content3 = document.querySelector(".modal-pin-content3");
+    const pinInputs = document.querySelectorAll('.pin-input');
+    const pinConfirmInputs = document.querySelectorAll('.pin-input-confirm');
+
+    modalPin.style.display = 'none';
+    content1.style.display = 'flex';
+    content2.style.display = 'none';
+    content3.style.display = 'none';
+
+    // Limpar os inputs
+    pinInputs.forEach(input => {
+        input.value = ''; // Limpa os campos de PIN
+    });
+    
+    pinConfirmInputs.forEach(input => {
+        input.value = ''; // Limpa os campos de confirmação do PIN
+    });
+}
+document.addEventListener('DOMContentLoaded', function () {
+    const sliderPin = document.querySelector('.slider-pin');
+    const togglePin = document.querySelector('.toggle-pin');
+    const modalPin = document.querySelector('.modal-pin');
+    const title = document.getElementById('title');
+    const pinInputs = document.querySelectorAll('.pin-input');
+    const pinConfirmInputs = document.querySelectorAll('.pin-input-confirm');
+    const nextButton = document.getElementById('nextButton');
+    const activatePinButton = document.getElementById('activatePinButton');
+    const content1 = document.querySelector('.modal-pin-content1');
+    const content2 = document.querySelector('.modal-pin-content2');
+    const content3 = document.querySelector('.modal-pin-content3');
+    const activeDesactive = document.querySelector('.active-desactive')
+    
+        function showLoadingModal() {
+            const loadingModal = document.querySelector(".loading-modal");
+            loadingModal.classList.add('visible');
+        }
+
+        function hideLoadingModal() {
+            const loadingModal = document.querySelector(".loading-modal");
+            loadingModal.classList.remove('visible');
+        }
+    showLoadingModal()
+    
+    let isActivating = true; // Flag para determinar o modo (ativar/desativar)
+
+    // Verifica se o usuário está autenticado e o estado do PIN
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            const db = firebase.firestore();
+            db.collection('users').doc(user.uid).get().then((doc) => {
+                if (doc.exists && doc.data().Configs && doc.data().Configs.pin) {
+                    togglePin.classList.add('active');
+                    activeDesactive.classList.add('active');
+                    content1.style.display = 'none';
+                    content2.style.display = 'flex';
+                    content3.style.display = 'none';
+                    title.textContent = "Desativar PIN";
+                    isActivating = false;
+                    hideLoadingModal()
+                } else {
+                    togglePin.classList.remove('active');
+                    activeDesactive.classList.remove('active');
+                    content1.style.display = 'flex';
+                    content2.style.display = 'none';
+                    content3.style.display = 'none';
+                    title.textContent = "Ativar PIN";
+                    isActivating = true;
+                    hideLoadingModal()
+                }
+            }).catch((error) => {
+                console.error('Erro ao buscar dados do usuário:', error);
+            });
+        } else {
+            alert('Por favor, faça login para verificar seu PIN.');
+        }
+    });
+
+    sliderPin.addEventListener('click', function () {
+        const isActive = togglePin.classList.toggle('active');
+        activeDesactive.classList.toggle('active');
+        modalPin.style.display = 'flex';
+
+        if (isActive) {
+            title.textContent = "Ativar PIN";
+            isActivating = true;
+            content1.style.display = 'flex';
+            content2.style.display = 'none';
+            content3.style.display = 'none';
+        } else {
+            title.textContent = "Desativar PIN";
+            isActivating = false;
+            content1.style.display = 'flex';
+            content2.style.display = 'none';
+            content3.style.display = 'none';
+        }
+    });
+
+    const checkPinInputsFilled = () => {
+        const allFilled = [...pinInputs].every(input => input.value.length === 1);
+        nextButton.disabled = !allFilled;
+        if (allFilled) pinInputs.forEach(input => input.blur());
+    };
+
+    // Função para voltar ao campo anterior ao pressionar Backspace
+    pinInputs.forEach((input, index) => {
+        input.addEventListener('input', () => {
+            if (input.value.length === 1) {
+                const nextInput = pinInputs[index + 1];
+                if (nextInput) nextInput.focus();
+            }
+            checkPinInputsFilled();
+        });
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace' && input.value === '') {
+                const previousInput = pinInputs[index - 1];
+                if (previousInput) previousInput.focus();
+            }
+        });
+    });
+
+
+    nextButton.addEventListener('click', () => {
+        if (isActivating) {
+            content1.style.display = 'none';
+            content2.style.display = 'flex';
+        } else {
+            deactivatePin();
+        }
+    });
+
+    const checkPinConfirmInputsFilled = () => {
+        const allFilled = [...pinConfirmInputs].every(input => input.value.length === 1);
+        activatePinButton.disabled = !allFilled;
+        if (allFilled) pinConfirmInputs.forEach(input => input.blur());
+    };
+
+    pinConfirmInputs.forEach((input, index) => {
+        input.addEventListener('input', () => {
+            if (input.value.length === 1) {
+                const nextInput = pinConfirmInputs[index + 1];
+                if (nextInput) nextInput.focus();
+            }
+            checkPinConfirmInputsFilled();
+        });
+
+        // Detecta o uso de backspace para retornar ao input anterior
+        input.addEventListener('keydown', (event) => {
+            if (event.key === 'Backspace' && input.value === '') {
+                const prevInput = pinConfirmInputs[index - 1];
+                if (prevInput) {
+                    prevInput.focus();
+                    prevInput.value = ''; // Limpa o campo anterior
+                }
+            }
+        });
+    });
+
+
+    activatePinButton.addEventListener('click', () => {
+        const pin = Array.from(pinInputs).map(input => input.value).join('');
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                const db = firebase.firestore();
+                db.collection('users').doc(user.uid).update({ PIN: pin })
+                    .then(() => {
+                        // Atualizar configuração
+                        return db.collection('users').doc(user.uid).update({ Configs: { pin: true } });
+                    })
+                    .then(() => {
+                        content2.style.display = 'none';
+                        content3.style.display = 'flex';
+                        console.log('PIN ativado com sucesso');
+                    })
+                    .catch((error) => {
+                        console.error('Erro ao ativar PIN:', error);
+                    });
+            } else {
+                alert('Por favor, faça login para ativar seu PIN.');
+            }
+        });
+    });
+
+    function deactivatePin() {
+        const enteredPin = Array.from(pinInputs).map(input => input.value).join('');
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                const db = firebase.firestore();
+                db.collection('users').doc(user.uid).get().then((doc) => {
+                    if (doc.exists && doc.data().PIN === enteredPin) {
+                        // Desativar PIN
+                        return db.collection('users').doc(user.uid).update({ PIN: '' });
+                    } else {
+                        alert('PIN incorreto.');
+                        throw new Error('PIN incorreto');
+                    }
+                })
+                .then(() => {
+                    // Atualizar configuração
+                    return db.collection('users').doc(user.uid).update({ Configs: { pin: false } });
+                })
+                .then(() => {
+                    content1.style.display = 'none';
+                    const desativado = document.getElementById('desativado');
+                    desativado.textContent = "PIN Desativado";
+                    content3.style.display = 'flex';
+                    console.log('PIN desativado com sucesso');
+                    
+                })
+                .catch((error) => {
+                    console.error('Erro ao desativar PIN:', error);
+                });
+            } else {
+                alert('Por favor, faça login para desativar seu PIN.');
+            }
+        });
+    }
+});
+    </script>
+</body>
+</html>

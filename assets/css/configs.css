@@ -1,0 +1,557 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  --black-color: hsl(220, 24%, 12%);
+  --black-color-light: hsl(220, 24%, 15%);
+  --black-color-lighten: hsl(220, 20%, 18%);
+  --white-color: #fff;
+  --body-color: hsl(220, 100%, 97%);
+  --sidebar-width: 250px;
+
+  /*========== Font and typography ==========*/
+  --body-font: "Montserrat", sans-serif;
+  --normal-font-size: .938rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+  display: flex;
+}
+
+.sidebar-config {
+  width: var(--sidebar-width);
+  background-color: var(--black-color);
+  padding: 1rem;
+  height: 100vh; /* Full height of the viewport */
+  position: fixed;
+}
+
+.sidebar-config ul {
+  list-style: none;
+}
+
+.sidebar-config li {
+  margin: 1rem 0;
+}
+
+.sidebar-config h2 {
+  color: #fff;
+  padding: 0.75rem 1rem;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 10px;
+  border-bottom: 2px solid var(--black-color-lighten);
+}
+
+.sidebar-config a {
+  text-decoration: none;
+  gap: 1rem;
+  color: var(--white-color);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.sidebar-config a:hover {
+  background-color: var(--black-color-light);
+}
+
+.sidebar-config .active {
+  background-color: var(--black-color-lighten);
+}
+
+.sidebar-config a.dropdown i#chevron {
+  transition: transform .5s ease-in-out;
+}
+
+ul.dropdown__menu {
+  background-color: hsl(220, 24%, 14%);
+  border-radius: 0 0 8px 8px;
+  transition: max-height 0.5s ease-in-out;
+  max-height: 0; /* Usar max-height em vez de height */
+  overflow: hidden;
+}
+
+
+ul.dropdown__menu li.dropdown__item {
+  margin: 0;
+}
+
+ul.dropdown__menu li.dropdown__item a.dropdown__link {
+  text-decoration: none;
+  color: var(--white-color);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  border-radius: 0;
+  border-bottom: 1px solid hsl(220, 20%, 18%);
+}
+
+ul.dropdown__menu li.dropdown__item a.dropdown__link:hover {
+  background-color: hsl(220, 20%, 18%);
+}
+
+ul.dropdown__menu li.dropdown__item:last-child a.dropdown__link {
+  border-radius: 0 0 8px 8px;
+  border-bottom: 0px;
+}
+
+.sidebar-config li.dropdown >  a#link {
+  background-color: var(--black-color-lighten);
+  border-radius: 8px 8px 0 0;
+  border-bottom: 2px solid hsl(220, 20%, 20%);
+}
+
+.disabled {
+  opacity: .7;
+  cursor: not-allowed;
+}
+
+.disabled:hover {
+  opacity: .5;
+}
+
+#chevron.rotate {
+  transform: rotate(180deg);
+  transition: transform 0.3s;
+}
+
+.main {
+  margin-left: 300px;
+  margin-top: 20px;
+  margin-right: 50px;
+}
+
+.main h1#title{
+  color: var(--black-color); /* Define a cor do texto como branco, utilizando uma variável CSS */
+  margin-bottom: 20px; /* Define uma margem inferior de 15px */
+  overflow: hidden; /* Evita que o texto transborde do contêiner */
+  text-overflow: ellipsis; /* Adiciona '...' se o texto for muito longo */
+  white-space: nowrap; /* Impede que o texto quebre em várias linhas */
+  border-bottom: 2px solid var(--black-color-light); /* Adiciona uma borda inferior */
+}
+
+.plans-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 20px;
+}
+
+.plan {
+  position: relative;
+  background-color: hsl(225, 100%, 98%);
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #e0e0e09e;
+  transition: .5s ease-in-out;
+  height: auto;
+  box-shadow: 0 4px 10px #0000001b;
+}
+
+.plan span#tag {
+  position: absolute;
+  top: -15px;
+  background-color: var(--color);
+  padding: 10px;
+  color: #fff;
+  border-radius: 13px;
+  transition: .5s ease-in-out;
+}
+
+.plan:hover span#tag { 
+  box-shadow: 0 4px 10px var(--color-border-hover);
+}
+
+.plan:hover {
+  border-color: var(--color-border-hover);
+  box-shadow: 0 4px 10px var(--color-border-hover);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.plan hr {
+  border: 2px solid #e0e0e09e;
+  border-radius: 5px;
+}
+
+.info h2#name {
+  color: var(--black-color-light);
+  font-size: 1.2rem;
+  text-shadow: 0 0 8px #0000000f;
+}
+
+.info h1#value {
+  color: var(--color);
+  text-shadow: 0 0 8px #0000000f;
+  font-size: 2.5rem;
+}
+
+.info h1#value > span#time {
+  font-size: .9rem;
+  color: #afafaf;
+}
+
+.info span {
+  color: var(--black-color-light);
+}
+
+.info#benef {
+  flex-direction: row;
+  columns: unset;
+  display: grid;
+  grid-template-columns: 150px 150px;
+}
+
+.info#benef .benef {
+  position: relative;
+  width: 150px;
+  border: 2px solid #e0e0e09e;
+  border-radius: 10px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: var(--black-color-light);
+}
+
+.benef2, .benef3, .benef4 {
+  border: 2px solid #e0e0e09e;
+  border-radius: 10px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: var(--black-color-light);
+}
+
+.benef2 {
+  width: 310px;
+}
+
+.benef3 {
+  width: 115px;
+}
+
+.benef4 {
+  width: 185px;
+  margin-left: -35px;
+} 
+
+.benef i#simbol {
+  position: absolute;
+  top: -7px;
+  right: -6px;
+}
+
+.plan > button.Adquirir {
+  width: 100%;
+  background-color: var(--color);
+  padding: 15px 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: .3s ease-in-out;
+}
+
+.plan > button.Adquirir:hover {
+  background-color: var(--color-hover);
+  box-shadow: none;
+}
+
+.modal-checkout {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  z-index: 99;
+  background-color: #0000001b;
+  backdrop-filter: blur(10px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content-checkout {
+  padding: 25px;
+  background-color: var(--black-color);
+  border-radius: 10px;
+  width: 450px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modal-content-checkout .metodos {
+  display: flex;
+  gap: .9rem;
+}
+
+.modal-content-checkout .metodos .metodo {
+  background-color: var(--black-color-light);
+  padding: 10px;
+  border-radius: 8px;
+  position: relative;
+  box-shadow: 0 0 10px #0000001b;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  transition: .5s ease-in-out;
+  border: 2px solid #fff0;
+}
+
+.modal-content-checkout .metodos .metodo i.checkbox {
+  position: absolute;
+  top: 10px;
+  font-size: 1.2rem;
+  right: 10px;
+  transition: .5s ease-in-out;
+}
+
+.modal-content-checkout .metodos .metodo.active {
+  border-color: #2ca0ff;
+}
+
+.modal-content-checkout .metodos .metodo.active i.checkbox {
+  color: #2ca0ff;
+  border-radius: 50%;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate; /* Alterado para 'separate' para o border-radius funcionar */
+  border-spacing: 0; /* Remove espaçamento extra entre células */
+  border: 3px solid #e0e0e0;
+  border-radius: 15px;
+  overflow: hidden; /* Mantém o arredondamento nas bordas */
+  box-shadow: 0 0 15px #00000032;
+}
+
+th, td {
+  padding: 20px;
+  text-align: left;
+  border-bottom: 2px solid #2d2d2d9e;
+  color: #fff;
+  background-color: var(--black-color-light);
+  transition: .5s ease-in-out;
+}
+
+th {
+  background-color: var(--black-color);
+  color: #fff;
+}
+
+tr:hover td {
+  background-color: var(--black-color-lighten);
+}
+
+
+.pin-content {
+  padding: 20px;
+  background-color: var(--black-color);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 0 10px #00000073;
+}
+
+.pin-content h1 {
+  color: var(--white-color); /* Define a cor do texto como branco, utilizando uma variável CSS */
+  margin-bottom: 15px; /* Define uma margem inferior de 15px */
+  overflow: hidden; /* Evita que o texto transborde do contêiner */
+  text-overflow: ellipsis; /* Adiciona '...' se o texto for muito longo */
+  white-space: nowrap; /* Impede que o texto quebre em várias linhas */
+  border-bottom: 2px solid var(--black-color-lighten); /* Adiciona uma borda inferior */
+}
+
+.pin-content p {
+  width: 60%;
+  color: var(--body-color);
+  text-align: justify;
+}
+
+.pin-content .slider-pin,
+.pin-content .slider-wallet,
+.pin-content .slider-oauth2 {
+  width: 120px;
+  background-color: var(--black-color-lighten);
+  height: 60px;
+  border-radius: 50px;
+  position: absolute;
+  right: 60px;
+  top: 80px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.pin-content .slider-pin .toggle-pin,
+.pin-content .slider-wallet .toggle-wallet,
+.pin-content .slider-oauth2 .toggle-oauth2 {
+  position: absolute;
+  left: 10px; /* Posição inicial à esquerda */
+  right: auto; /* Garante que 'right' não interfere */
+  width: 50px;
+  height: 50px;
+  background-color: #2ca0ff;
+  box-shadow: 0 0 8px #268fe5;
+  border-radius: 50%;
+  transition: right 0.7s ease-in-out, left 0.5s ease-in-out; /* Adicionando a transição para 'left' */
+}
+
+.pin-content .slider-pin .toggle-pin.active,
+.pin-content .slider-wallet .toggle-wallet.active,
+.pin-content .slider-oauth2 .toggle-oauth2.active {
+  left: calc(100% - 60px); /* Ajuste para mover o botão para a direita */
+}
+
+.active-desactive,
+.active-desactive-wallet,
+.active-desactive-oauth2 {
+  position: absolute;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  background-color: var(--black-color-lighten);
+  border-radius: 50%;
+  top: 100px;
+  transition: .5s ease-in-out;
+}
+
+.active-desactive.active,
+.active-desactive-wallet.active,
+.active-desactive-oauth2.active {
+  box-shadow: 0 0 8px #268fe5;
+  background-color: #268ff2;
+}
+
+.modal-pin {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Para ficar sobre outros elementos */
+}
+
+.modal-pin-content1,
+.modal-pin-content2,
+.modal-pin-content3 {
+  background-color: hsl(222, 25%, 8%);
+  padding: 20px;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.modal-pin-content3 i {
+ font-size: 3rem;
+ color: #64CD8A;
+}
+
+.pin-input,
+.pin-input-confirm {
+  width: 50px; /* Largura dos inputs */
+  height: 60px; /* Altura maior que a largura */
+  font-size: 24px; /* Tamanho da fonte */
+  border: 2px solid hsl(220, 24%, 15%);
+  background-color: hsl(220, 29%, 10%);
+  border-radius: 8px;
+  color: #fff;
+  text-align: center;
+  transition: .5s ease-in-out;
+  margin: 5px;
+}
+
+.pin-input:focus,
+.pin-input-confirm:focus {
+  border-color: #268fe5;
+  outline: none;
+  box-shadow: 0 0 10px #0000009d;
+}
+
+button {
+  margin-top: 10px;
+  padding: 15px 20px;
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  background-color: #2ca0ff;
+  color: white;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+}
+
+button:disabled {
+  background-color: #a0a0a0; /* Cor do botão desabilitado */
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #1f7bbf; /* Cor do botão ao passar o mouse */
+  box-shadow: 0 0 15px #1a6aa8;
+}
+
+
+/*=============== RESPONSIVE DESIGN ===============*/
+@media screen and (max-width: 768px) {
+  .sidebar-config {
+    width: 200px; /* Sidebar width for smaller screens */
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  body {
+    flex-direction: row; /* Maintain sidebar layout on larger screens */
+  }
+}

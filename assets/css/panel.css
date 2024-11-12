@@ -1,0 +1,146 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  --black-color: #171c26;
+  --black-color-light: hsl(220, 24%, 15%);
+  --black-color-lighten: hsl(220, 20%, 18%);
+  --white-color: #fff;
+  --body-color: hsl(220, 100%, 97%);
+  --sidebar-width: 250px;
+
+  /*========== Font and typography ==========*/
+  --body-font: "Montserrat", sans-serif;
+  --normal-font-size: .938rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+  display: flex;
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--black-color);
+    padding: 1rem;
+    height: 100vh; /* Full height of the viewport */
+    position: fixed;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+  }
+  
+  .sidebar li {
+    margin: 1rem 0;
+  }
+
+  .sidebar li#logout:last-child {
+    position: absolute;
+    bottom: -15px;
+    width: 100%;
+    left: 0;
+    border-radius: 0 0 0 0;
+  }
+  
+  .sidebar h2 {
+    color: #fff;
+    padding: 0.75rem 1rem;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 10px;
+    border-bottom: 2px solid var(--black-color-lighten);
+  }
+  
+  .sidebar a {
+    text-decoration: none;
+    gap: 1rem;
+    color: var(--white-color);
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .sidebar a:hover {
+    background-color: var(--black-color-light);
+  }
+  
+  .sidebar .active {
+    background-color: var(--black-color-lighten);
+  }
+
+  .sidebar a.dropdown i#chevron,
+  .sidebar a.dropdown2 i#chevron2 {
+    transition: transform .5s ease-in-out;
+  }
+  
+  
+ul.dropdown__menu {
+    background-color: hsl(220, 24%, 14%);
+    border-radius: 0 0 8px 8px;
+    transition: max-height 0.5s ease-in-out;
+    max-height: 0; /* Usar max-height em vez de height */
+    overflow: hidden;
+  }
+  
+  
+  ul.dropdown__menu li.dropdown__item {
+    margin: 0;
+  }
+  
+  ul.dropdown__menu li.dropdown__item a.dropdown__link {
+    text-decoration: none;
+    color: var(--white-color);
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    border-radius: 0;
+    border-bottom: 1px solid hsl(220, 20%, 18%);
+  }
+  
+  ul.dropdown__menu li.dropdown__item a.dropdown__link:hover {
+    background-color: hsl(220, 20%, 18%);
+  }
+  
+  ul.dropdown__menu li.dropdown__item:last-child a.dropdown__link {
+    border-radius: 0 0 8px 8px;
+    border-bottom: 0px;
+  }
+  
+  .sidebar li.dropdown >  a#link,
+  .sidebar li.dropdown2 >  a#link2 {
+    background-color: var(--black-color-lighten);
+    border-radius: 8px 8px 0 0;
+    border-bottom: 2px solid hsl(220, 20%, 20%);
+  }
+
+  #chevron.rotate,
+  #chevron2.rotate2 {
+    transform: rotate(180deg);
+    transition: transform 0.3s;
+  }

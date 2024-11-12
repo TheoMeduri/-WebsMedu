@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--=============== REMIXICONS ===============-->
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@4.4.0/fonts/remixicon.css" rel="stylesheet">
+
+        <!--=============== CSS ===============-->
+        <link rel="stylesheet" href="../assets/css/admin.css">
+    
+        <!--=============== JS ===============-->
+        <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-auth-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore-compat.js"></script>
+        <script src="../firebaseConfig.js"></script>
+        <script src="authGuard.js"></script>
+        
+        <title>WebsMedu - ADM</title>
+</head>
+<body>
+        
+    <div class="sidebar">
+        <ul>
+            <h2><i class="ri-admin-line"></i> Painel ADM</h2>
+            <li>
+                <a href="./" class="link">
+                    <i class="ri-dashboard-line"></i> DashBoard
+                </a>
+            </li>
+            <li id="dropdown-li">
+                <a href="" class="link dropdown" id="link">
+                    <i class="ri-archive-line"></i> Pedidos <i class="ri-arrow-down-s-line" id="chevron"></i>
+                </a>
+                <ul class="dropdown__menu">
+                    <li class="dropdown__item">
+                        <a href="" class="dropdown__link">
+                            <i class="ri-sparkling-line"></i> Novos
+                        </a>
+                    </li>
+                    <li class="dropdown__item">
+                        <a href="" class="dropdown__link">
+                            <i class="ri-time-line"></i> Pendente
+                        </a>
+                    </li>
+                    <li class="dropdown__item">
+                        <a href="" class="dropdown__link">
+                            <i class="ri-checkbox-circle-line"></i> Finalizados
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="produtos.html" class="link  active">
+                    <i class="ri-inbox-archive-line"></i> Produtos
+                </a>
+            </li>
+            <li>
+                <a href="users.html" class="link">
+                    <i class="ri-group-line"></i> Usuários
+                </a>
+            </li>
+            <li>
+                <a href="logs.html" class="link">
+                    <i class="ri-blogger-line"></i> Logs
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <div class="form-content">
+            <div class="menu">
+                <li>
+                    <a href="#" class="active" id="add" onclick="addForm()">
+                        <i class="ri-add-line"></i> Adicionar
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="remov" onclick="removeForm()">
+                        <i class="ri-delete-bin-line"></i> Remover
+                    </a>
+                </li>
+            </div>
+
+            <div class="add-remove">
+                <div class="add">
+                    <div class="form-group">
+                        <label for="img">Imagem</label>
+                        <input type="text" id="img" placeholder="Insira a imagem do produto em url ( ex: https://midia.com.br/1233 )" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input type="text" id="name" placeholder="Insira o nome do produto ( ex: Camiseta de Couro )" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="desc">Descrição</label>
+                        <textarea id="desc" placeholder="Insira a descrição do produto ( ex: Varias cores em um! )" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Preço</label>
+                        <input type="number" id="price" placeholder="Insira o preço do produto ( ex: 12,40 )" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cate">Categoria</label>
+                        <input type="text" id="cate" placeholder="Insira a categoria do produto ( ex: Web Site )" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descont">Desconto</label>
+                        <input type="text" id="descont" placeholder="Insira o desconto do produto ( ex: 56% )" required>
+                    </div>
+                    <div class="form-group">
+                        <button onclick="addProduct()">Adicionar</button>
+                    </div>
+                </div>
+    
+                <div class="remove">
+                    <div class="form-group">
+                        <label for="idProduc">ID do produto</label>
+                        <input type="text" id="idProduc" placeholder="Insira o ID do produto ( ex: 1347623543345 )" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="why">Porque deseja remover?</label>
+                        <input type="text" id="why" placeholder="Insira o porque deseja remover o produto ( ex: Falta de compras )">
+                    </div>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <div class="form-group">
+                        <button onclick="removeProduct()">Remover</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.link.dropdown').forEach(dropdown => {
+            dropdown.addEventListener('click', function(e) {
+                e.preventDefault(); // Impede o redirecionamento
+                const dropLi = document.getElementById('dropdown-li')
+                const menu = this.nextElementSibling; // Seleciona o menu relacionado
+                menu.style.maxHeight = menu.style.maxHeight ? null : "200px"; // Alterna a altura
+                this.querySelector('#chevron').classList.toggle('rotate'); // Opcional: para animar o ícone
+                dropLi.classList.toggle('dropdown')
+            });
+        });
+
+        function removeForm() {
+            const removeBtn = document.getElementById('remov');
+            const removeForm = document.querySelector('.remove');
+            const addBtn = document.getElementById('add')
+
+            removeBtn.classList.add('active');
+            addBtn.classList.remove('active');
+            removeForm.classList.add('active');
+        }
+
+        function addForm() {
+            const removeBtn = document.getElementById('remov');
+            const removeForm = document.querySelector('.remove');
+            const addBtn = document.getElementById('add')
+
+            removeBtn.classList.remove('active');
+            addBtn.classList.add('active');
+            removeForm.classList.remove('active');
+        }
+
+        const AddForm = {
+            img: () => document.getElementById("img"),
+            name: () => document.getElementById("name"),
+            desc: () => document.getElementById("desc"),
+            price: () => document.getElementById("price"),
+            cate: () => document.getElementById("cate"),
+            descont: () => document.getElementById("descont")
+        }
+
+        const RemoveForm = {
+            id: () => document.getElementById("idProduc"),
+            why: () => document.getElementById("why")
+        }
+
+        // Função para gerar um ID aleatório de 20 dígitos
+        function generateId() {
+            let id = '';
+            for (let i = 0; i < 20; i++) {
+                id += Math.floor(Math.random() * 10); // Gera um dígito aleatório de 0 a 9
+            }
+            return id;
+        }
+
+        // Configuração do Firestore
+        const db = firebase.firestore();
+
+       // Função para adicionar o produto ao Firestore
+        async function addProduct() {
+            const productId = generateId(); // Gera um ID para o documento
+
+            // Obtém os valores do formulário
+            const productData = {
+                img: AddForm.img().value,
+                name: AddForm.name().value,
+                desc: AddForm.desc().value,
+                price: parseFloat(AddForm.price().value),
+                cate: AddForm.cate().value,
+                descont: parseFloat(AddForm.descont().value)
+            };
+
+            try {
+                // Adiciona o produto ao Firestore
+                await db.collection("Products").doc(productId).set(productData);
+                console.log("Produto adicionado com sucesso!");
+
+                // Captura o UID do usuário logado (supondo que você tenha uma maneira de obter isso)
+                const userUid = firebase.auth().currentUser.uid;
+
+                // Busca as informações do usuário logado
+                const userSnapshot = await db.collection('users').doc(userUid).get();
+                let userInitials = 'N/A'; // Valor padrão para iniciais
+
+                if (userSnapshot.exists) {
+                    const user = userSnapshot.data();
+                    // Extrai as iniciais do nome do usuário
+                    userInitials = user.name.split(' ').map(word => word.charAt(0)).join('').toUpperCase();
+                }
+
+                // Adiciona um log na coleção "Logs" com as informações do produto adicionado
+                const logData = {
+                    name: "Adição de produto",
+                    why: `Produto ${productData.name} adicionado.`,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    photo: userInitials, // Adicionar as iniciais como foto
+                    idProduct: productId // Agora idProduct é igual ao productId
+                };
+                await db.collection("Logs").add(logData);
+                console.log("Log de adição adicionado com sucesso!");
+
+            } catch (error) {
+                console.error("Erro ao adicionar produto:", error);
+            }
+        }
+
+
+        async function removeProduct() {
+            // Obter o ID do produto e o motivo da remoção
+            const productId = RemoveForm.id().value;
+            const removalReason = RemoveForm.why().value;
+
+            try {
+                // Obter o UID do usuário logado
+                const user = firebase.auth().currentUser;
+                if (!user) {
+                    console.log("Usuário não autenticado.");
+                    return;
+                }
+                const userId = user.uid;
+
+                // Buscar o nome completo do usuário no Firestore
+                const userRef = db.collection("users").doc(userId);
+                const userSnapshot = await userRef.get();
+                let userInitials = "N/A"; // Valor padrão para caso não encontre o nome do usuário
+
+                if (userSnapshot.exists) {
+                    const userName = userSnapshot.data().name;
+                    // Extrair as iniciais do nome
+                    userInitials = userName.split(" ").map(name => name[0]).join("").toUpperCase();
+                }
+
+                // Referência ao documento do produto na coleção "Products"
+                const productRef = db.collection("Products").doc(productId);
+                
+                // Verificar se o produto existe na coleção "Products"
+                const productSnapshot = await productRef.get();
+                if (productSnapshot.exists) {
+                    // Deletar o produto da coleção "Products"
+                    await productRef.delete();
+                    console.log("Produto removido com sucesso!");
+
+                    // Adicionar um log na coleção "Logs" com o motivo da remoção, timestamp, e iniciais do usuário
+                    const logData = {
+                        name: "Remoção de produto",
+                        why: removalReason,
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                        photo: userInitials, // Adicionar as iniciais como foto
+                        idProduct: productId
+                    };
+                    await db.collection("Logs").add(logData);
+                    console.log("Log de remoção adicionado com sucesso!");
+
+                    // Limpar os campos do formulário
+                    RemoveForm.id().value = '';
+                    RemoveForm.why().value = '';
+                } else {
+                    console.log("Produto não encontrado na coleção Products.");
+                    // Limpar os campos do formulário
+                    RemoveForm.id().value = '';
+                    RemoveForm.why().value = '';
+                }
+            } catch (error) {
+                console.error("Erro ao remover produto:", error);
+            }
+        }
+
+
+
+    </script>
+</body>
+</html>

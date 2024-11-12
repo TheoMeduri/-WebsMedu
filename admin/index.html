@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--=============== REMIXICONS ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.4.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="../assets/css/admin.css">
+
+    <!--=============== JS ===============-->
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-auth-compat.js"></script>
+    <script src="../firebaseConfig.js"></script>
+    <script src="authGuard.js"></script>
+    
+    <title>WebsMedu - ADM</title>
+</head>
+<body>
+    
+    <div class="sidebar">
+        <ul>
+            <h2><i class="ri-admin-line"></i> Painel ADM</h2>
+            <li>
+                <a href="./" class="link active">
+                    <i class="ri-dashboard-line"></i> DashBoard
+                </a>
+            </li>
+            <li id="dropdown-li">
+                <a href="" class="link dropdown" id="link">
+                    <i class="ri-archive-line"></i> Pedidos <i class="ri-arrow-down-s-line" id="chevron"></i>
+                </a>
+                <ul class="dropdown__menu">
+                    <li class="dropdown__item">
+                        <a href="" class="dropdown__link">
+                            <i class="ri-sparkling-line"></i> Novos
+                        </a>
+                    </li>
+                    <li class="dropdown__item">
+                        <a href="" class="dropdown__link">
+                            <i class="ri-time-line"></i> Pendente
+                        </a>
+                    </li>
+                    <li class="dropdown__item">
+                        <a href="" class="dropdown__link">
+                            <i class="ri-checkbox-circle-line"></i> Finalizados
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="produtos.html" class="link">
+                    <i class="ri-inbox-archive-line"></i> Produtos
+                </a>
+            </li>
+            <li>
+                <a href="users.html" class="link">
+                    <i class="ri-group-line"></i> Usuários
+                </a>
+            </li>
+            <li>
+                <a href="logs.html" class="link">
+                    <i class="ri-blogger-line"></i> Logs
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        document.querySelectorAll('.link.dropdown').forEach(dropdown => {
+    dropdown.addEventListener('click', function(e) {
+        e.preventDefault(); // Impede o redirecionamento
+        const dropLi = document.getElementById('dropdown-li')
+        const menu = this.nextElementSibling; // Seleciona o menu relacionado
+        menu.style.maxHeight = menu.style.maxHeight ? null : "200px"; // Alterna a altura
+        this.querySelector('#chevron').classList.toggle('rotate'); // Opcional: para animar o ícone
+        dropLi.classList.toggle('dropdown')
+    });
+});
+
+    </script>
+
+</body>
+</html>

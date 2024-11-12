@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pague com PIX</title>
+</head>
+<body>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('name');
+        const price = urlParams.get('price');
+
+        // Exemplo de exibição dos valores
+        console.log(`Nome do Plano: ${name}`);
+        console.log(`Preço do Plano: ${price}`);
+    </script>
+</body>
+</html>

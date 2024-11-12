@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!--=============== REMIXICONS ===============-->
+   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+
+   <!--=============== CSS ===============-->
+   <link rel="stylesheet" href="../assets/css/configs.css">
+   <link rel="stylesheet" href="../assets/css/spinner.css">
+
+   <title>WebsMedu - Configs - Planos</title>
+</head>
+<body>
+
+    <div class="sidebar-config">
+        <ul>
+            <h2><i class="ri-settings-3-line"></i> Configurações </h2>
+            <li>
+                <a href="#" class="link">
+                    <i class="ri-notification-3-line"></i> Notificações
+                </a>
+            </li>
+            <li>
+                <a href="#" class="link">
+                    <i class="ri-cloud-line"></i> Temas
+                </a>
+            </li>
+            <li>
+                <a href="#" class="link">
+                    <i class="ri-upload-cloud-2-line"></i> Backups
+                </a>
+            </li>
+            <li>
+                <a href="plans.html" class="link active">
+                    <i class="ri-wallet-3-line"></i>  Planos
+                </a>
+            </li>
+            <li id="dropdown-li">
+                <a href="pin.html" class="link dropdown"  id="link">
+                    <i class="ri-shield-check-line"></i> Segurança <i class="ri-arrow-down-s-line dropdown__arrow" id="chevron"></i>
+                </a>
+                <ul class="dropdown__menu">
+                    <li class="dropdown__item">
+                        <a href="" class="dropdown__link">
+                            <i class="ri-asterisk"></i> PIN
+                        </a>
+                    </li>
+                    <li class="dropdown__item">
+                        <a href="" class="dropdown__link">
+                            <i class="ri-wallet-line"></i> Carteira
+                        </a>
+                    </li>
+                    <li class="dropdown__item">
+                        <a href="" class="dropdown__link disabled">
+                            <i class="ri-qr-code-fill"></i> OAuth2
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    
+    <div class="main">
+        <div class="plans-content">
+          <div class="plan" style="--color: #2ca0ff; --color-border-hover: #2ca0ff3b;">
+              <div class="info">
+                  <h2 id="name">Plus Web</h2>
+                  <h1 id="value">R$ 15,80 <span id="time">/Mês</span></h1>
+              </div>
+              <hr>
+              <div class="info" id="benef">
+                  <div class="benef" style="--grid-area: 1item;">
+                      <i class="ri-shining-fill" id="simbol"></i>
+                      <i class="ri-group-line"></i>
+                      <span>Equipe</span>
+                  </div>
+                  <div class="benef" style="--grid-area: 2item;">
+                      <i class="ri-speed-fill" id="simbol"></i>
+                      <i class="ri-at-line"></i>
+                      <span>Emails</span>
+                  </div>
+                  <div class="benef2" style="--grid-area: 3item;">
+                      <i class="ri-coupon-2-line"></i>
+                      <span>Cupons</span>
+                  </div>
+              </div>
+              <hr>
+              <div class="info">
+                  <span><i class="ri-check-fill" style="color: #009000;"></i> Mais Produtos</span>
+                  <span><i class="ri-check-fill" style="color: #009000;"></i> Suporte Normal</span>
+                  <span><i class="ri-check-fill" style="color: #009000;"></i> Descontos Exclusivos</span>
+                  <span><i class="ri-check-fill" style="color: #009000;"></i> Equipe de <b>Três</b> pessoas</span>
+              </div>
+              <button type="button" class="Adquirir" onclick="startCheckout()" style="--color-hover: #1374c4;">Adquirir</button>
+          </div>
+          <div class="plan" style="--color: #2ca0ff; --color-border-hover: #2ca0ff3b;">
+              <div class="info">
+                  <h2 id="name">Webs Master</h2>
+                  <h1 id="value">R$ 34,60 <span id="time">/Mês</span></h1>
+              </div>
+              <hr>
+              <div class="info" id="benef">
+                  <div class="benef">
+                      <i class="ri-shining-fill" id="simbol"></i>
+                      <i class="ri-group-line"></i>
+                      <span>Equipe</span>
+                  </div>
+                  <div class="benef">
+                      <i class="ri-speed-fill" id="simbol"></i>
+                      <i class="ri-at-line"></i>
+                      <span>Emails</span>
+                  </div>
+                  <div class="benef3">
+                      <i class="ri-chat-1-line"></i>
+                      <span>Chats</span>
+                  </div>
+                  <div class="benef4">
+                      <i class="ri-asterisk"></i>
+                      <span>PIN</span>
+                  </div>
+              </div>
+              <hr>
+              <div class="info">
+                  <span><i class="ri-check-fill" style="color: #009000;"></i> Mais Produtos</span>
+                  <span><i class="ri-check-fill" style="color: #009000;"></i> Suporte rápido</span>
+                  <span><i class="ri-check-fill" style="color: #009000;"></i> Descontos Exclusivos</span>
+                  <span><i class="ri-check-fill" style="color: #009000;"></i> Equipe de <b>Dez</b> pessoas</span>
+              </div>
+              <button type="button" class="Adquirir" onclick="startCheckout()"  style="--color-hover: #1374c4;">Adquirir</button>
+          </div>
+          <div class="plan" style="--color: #792cff; --color-border-hover: #792cff46;">
+              <span id="tag">POPULAR <i class="ri-sparkling-2-fill"></i></span>
+              <div class="info">
+                  <h2 id="name">Super Master</h2>
+                  <h1 id="value">R$ 84,90 <span id="time">/Mês</span></h1>
+              </div>
+              <hr>
+              <div class="info" id="benef">
+                  <div class="benef">
+                      <i class="ri-shining-fill" id="simbol"></i>
+                      <i class="ri-group-line"></i>
+                      <span>Equipe</span>
+                  </div>
+                  <div class="benef">
+                      <i class="ri-speed-fill" id="simbol"></i>
+                      <i class="ri-at-line"></i>
+                      <span>Emails</span>
+                  </div>
+                  <div class="benef3">
+                      <i class="ri-chat-1-line"></i>
+                      <span>Chats</span>
+                  </div>
+                  <div class="benef4">
+                      <i class="ri-slash-commands-2"></i>
+                      <span>Slashs Comands</span>
+                  </div>
+              </div>
+              <hr>
+              <div class="info">
+                  <span><i class="ri-check-fill" style="color: #009000;"></i> Mais Produtos</span>
+                  <span><i class="ri-check-fill" style="color: #009000;"></i> Suporte hiper-rápido</span>
+                  <span><i class="ri-check-fill" style="color: #009000;"></i> Descontos Exclusivos</span>
+                  <span><i class="ri-check-fill" style="color: #009000;"></i> Equipe de <b>Quinze</b> pessoas</span>
+              </div>
+              <button type="button" class="Adquirir" onclick="startCheckout()"  style="--color-hover: #5814ce;">Adquirir</button>
+          </div>
+        </div>
+       <div class="plans-content">
+          <table>
+              <thead>
+                <tr>
+                  <th>Comparação de recursos</th>
+                  <th>Plus Web</th>
+                  <th>Webs Master</th>
+                  <th>Super Master</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Equipe</td>
+                  <td>Máx. 3 Pessoas</td>
+                  <td>Máx. 10 Pessoas</td>
+                  <td>Máx. 10 Pessoas</td>
+                </tr>
+                <tr>
+                  <td>Cupons Excluisivos</td>
+                  <td>3 Cupons</td>
+                  <td>10 Cupons</td>
+                  <td>15 Cupons</td>
+                </tr>
+                <tr>
+                  <td>Emails</td>
+                  <td>2 Emails</td>
+                  <td>10 Emails</td>
+                  <td>15 Emails</td>
+                </tr>
+                <tr>
+                  <td>Chats</td>
+                  <td><i class="ri-close-line" style="color: #ff2b2b;"></i></td>
+                  <td>Ao Vivo - Máx 5</td>
+                  <td>Ao Vivo</td>
+                </tr>
+                <tr>
+                  <td>PIN</td>
+                  <td><i class="ri-close-line" style="color: #ff2b2b;"></i></td>
+                  <td>Segurança - Média</td>
+                  <td>Segurança - Máxima</td>
+                </tr>
+                <tr>
+                  <td>Slash Comands</td>
+                  <td><i class="ri-close-line" style="color: #ff2b2b;"></i></td>
+                  <td><i class="ri-close-line" style="color: #ff2b2b;"></i></td>
+                  <td>Personalizado</td>
+                </tr>
+                <tr>
+                  <td>Meeting</td>
+                  <td><i class="ri-close-line" style="color: #ff2b2b;"></i></td>
+                  <td><i class="ri-close-line" style="color: #ff2b2b;"></i></td>
+                  <td>Máx. 30 Membros</td>
+                </tr>
+                <tr>
+                  <td>Suporte</td>
+                  <td><i class="ri-close-line" style="color: #ff2b2b;"></i></td>
+                  <td>Rápido</td>
+                  <td>Hiper-Rápido</td>
+                </tr>
+                <tr>
+                  <td>Domínio</td>
+                  <td><i class="ri-close-line" style="color: #ff2b2b;"></i></td>
+                  <td><i class="ri-close-line" style="color: #ff2b2b;"></i></td>
+                  <td>40% OFF</td>
+                </tr>
+                <tr>
+                  <td>Adicionais</td>
+                  <td><i class="ri-close-line" style="color: #ff2b2b;"></i></td>
+                  <td><i class="ri-close-line" style="color: #ff2b2b;"></i></td>
+                  <td>50% OFF</td>
+                </tr>
+              </tbody>
+            </table>
+       </div>
+        
+      </div>
+
+      <div class="modal-checkout">
+        <div class="modal-content-checkout">
+            <h1>Escolha um Método:</h1>
+            <p>Pague com Pix ou Cartão de Débito.</p>
+            <div class="metodos">
+                <div class="metodo">
+                    <i class="ri-checkbox-blank-circle-line checkbox"></i>
+                    <h3 style="margin-bottom: 22px;"><i class="ri-pix-line"></i> PIX</h3>
+                    <p>Pague junto com MercadoPago.</p>
+                </div>
+                <div class="metodo">
+                    <i class="ri-checkbox-blank-circle-line checkbox"></i>
+                    <h3><i class="ri-bank-card-line"></i> Cartão de Débito</h3>
+                    <p>Pague junto com MercadoPago.</p>
+                </div>
+            </div>
+            <button id="selecionar-btn">Selecionar</button>
+        </div>
+    </div>
+
+    <div class="loading-modal">
+        <div class="loading-modal-content">
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore-compat.js"></script>
+    <script src="../firebaseConfig.js"></script>
+    
+    <script>
+        // Função para abrir o dropdown
+        document.querySelectorAll('.link.dropdown').forEach(dropdown => {
+            dropdown.addEventListener('click', function(e) {
+                e.preventDefault();
+                const dropLi = document.getElementById('dropdown-li')
+                const menu = this.nextElementSibling;
+                menu.style.maxHeight = menu.style.maxHeight ? null : "200px";
+                this.querySelector('#chevron').classList.toggle('rotate');
+                dropLi.classList.toggle('dropdown')
+            });
+        });
+        function startCheckout() {
+            const modalCheckout = document.querySelector('.modal-checkout');
+            modalCheckout.style.display = 'flex';
+
+            // Obtém os elementos de nome e preço do plano
+            const namePlan = document.getElementById('name').innerText;
+            const pricePlan = document.getElementById('value').innerText;
+
+            // Armazena essas variáveis para serem usadas mais tarde
+            window.selectedPlan = { name: namePlan, price: pricePlan };
+        }
+
+        const metodos = document.querySelectorAll('.metodo');
+        const selecionarBtn = document.getElementById('selecionar-btn');
+
+        // Adiciona o evento de clique para alternar os métodos
+        metodos.forEach(metodo => {
+            metodo.addEventListener('click', () => {
+                const checkbox = metodo.querySelector('.checkbox');
+                
+                // Verifica se o método já está marcado
+                if (metodo.classList.contains('active')) {
+                    metodo.classList.remove('active');
+                    checkbox.classList.remove('ri-checkbox-circle-fill');
+                    checkbox.classList.add('ri-checkbox-blank-circle-line');
+                } else {
+                    metodos.forEach(m => {
+                        m.classList.remove('active');
+                        const checkbox = m.querySelector('.checkbox');
+                        checkbox.classList.remove('ri-checkbox-circle-fill');
+                        checkbox.classList.add('ri-checkbox-blank-circle-line');
+                    });
+                    
+                    metodo.classList.add('active');
+                    checkbox.classList.remove('ri-checkbox-blank-circle-line');
+                    checkbox.classList.add('ri-checkbox-circle-fill');
+                }
+            });
+        });
+
+        // Lógica para o botão "Selecionar"
+        selecionarBtn.addEventListener('click', () => {
+            const metodoSelecionado = document.querySelector('.metodo.active');
+
+            if (metodoSelecionado) {
+                const { name, price } = window.selectedPlan || {};
+
+                // Cria uma query string com o nome e preço do plano
+                const queryParams = new URLSearchParams({ name: name || '', price: price || '' }).toString();
+
+                // Verifica o método selecionado e redireciona para a página com os parâmetros na URL
+                if (metodoSelecionado.querySelector('h3').innerText.includes('PIX')) {
+                    window.location.href = `/pix.html?${queryParams}`;
+                } else if (metodoSelecionado.querySelector('h3').innerText.includes('Cartão de Débito')) {
+                    window.location.href = `/debitcard.html?${queryParams}`;
+                }
+            } else {
+                alert("Por favor, selecione um método.");
+            }
+        });
+
+    </script>
+</body>
+</html>
