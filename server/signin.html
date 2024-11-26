@@ -71,19 +71,32 @@
             loadingModal.classList.remove("visible");
         }
 
-        function login(event) {
+       function login(event) {
             event.preventDefault(); // Previne o comportamento padrão do formulário
             showLoadingModal();
+        
+            // Realiza o login com Firebase
             firebase.auth().signInWithEmailAndPassword(form.email().value, form.password().value)
                 .then(response => {
                     hideLoadingModal();
-                    window.location.href = '../';
+                    
+                    // Verifica se existe um parâmetro 'href' na URL
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const redirectUrl = urlParams.get('href'); // Obtém o valor do parâmetro 'href'
+        
+                    // Se o parâmetro 'href' existir, redireciona para ele, senão, mantém a URL padrão
+                    if (redirectUrl) {
+                        window.location.href = redirectUrl;
+                    } else {
+                        window.location.href = '../'; // Redireciona para a URL padrão
+                    }
                 })
                 .catch(error => {
                     hideLoadingModal();
                     alert(getErrorMessage(error));
                 });
         }
+
 
         function recoverPassword() {
             showLoadingModal();
