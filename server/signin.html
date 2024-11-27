@@ -98,7 +98,6 @@
                 });
         }
 
-
         function recoverPassword() {
             showLoadingModal();
             firebase.auth().sendPasswordResetEmail(form.email().value)
